@@ -1,24 +1,42 @@
-PROYECTO FINAL: IA - PROMPT ENGINEERING PARA DEVELOPERS 3.0
+# 🛠️ Servii AI - Diagnóstico Inteligente de Servicios del Hogar
 
-1. PORTADA Y DATOS GENERALES
-- Proyecto: Servii AI
-- Alumno: [Tu Nombre y Apellido]
-- Comisión: [Tu Número de Comisión]
-- Repositorio GitHub: [PEGÁ ACÁ EL LINK DE TU REPO]
-- App Desplegada en Streamlit: [PEGÁ ACÁ EL LINK DE STREAMLIT CLOUD]
+**Proyecto Final - IA: Prompt Engineering para Developers 3.0** *Coderhouse*
 
-2. PROBLEMÁTICA
-En Uruguay y la región, la contratación de servicios de mantenimiento del hogar (sanitaria, electricidad, cerrajería) sufre de alta fricción e incertidumbre. Los usuarios no tienen conocimientos técnicos para diagnosticar averías y los profesionales pierden tiempo valioso en visitas de evaluación no remuneradas.
+---
 
-3. SOLUCIÓN PROPUESTA
-Servii AI actúa como un Director Técnico Virtual que traduce descripciones informales o imágenes de usuarios en Fichas Técnicas estandarizadas, permitiendo diagnósticos inmediatos y presupuestos certeros sin visitas a ciegas.
+## 📌 Descripción del Proyecto
 
-4. ARQUITECTURA TÉCNICA Y SALIDA DIRIGIDA
-- Framework Frontend: Streamlit.
-- Modelo Fundacional: Google Gemini 1.5 Flash.
-- Tipo de Prompting: System Prompt con Salida Dirigida (Structured Output) forzando formato JSON estricto mediante response_mime_type="application/json".
-- Esquema JSON Generado: categoria, diagnostico_preliminar, nivel_urgencia, profesional_requerido, materiales_probables, tiempo_estimado_horas y resumen_para_tecnico.
+**Servii AI** es una aplicación web interactiva desarrollada con **Streamlit** e impulsada por los modelos fundacionales de **Google Gemini**. Su objetivo principal es resolver la asimetría de información en el mercado de reparaciones y mantenimiento doméstico (sanitaria, electricidad, cerrajería, albañilería, climatización, etc.).
 
-5. FACTIBILIDAD ECONÓMICA
-- Costo por consulta: ~$0.0005 USD (Gemini Flash).
-- Viabilidad: Alta rentabilidad con costos de procesamiento marginales frente a comisiones de servicio del 10%-15%.
+A través de un **System Prompt con salida dirigida (Structured Output)**, la aplicación analiza descripciones en lenguaje natural ingresadas por los usuarios y genera automáticamente una **Ficha Técnica Estructurada en formato JSON**, permitiendo presupuestar reparaciones con precisión y eliminando visitas técnicas preliminares a ciegas.
+
+---
+
+## 🚀 Características Principales
+
+- **Diagnóstico Preliminar Inmediato:** Traduce descripciones cotidianas en fallas técnicas específicas.
+- **Categorización y Clasificación de Urgencia:** Asigna el rubro adecuado y clasifica la criticidad del problema (Bajo, Medio, Alto, Crítico).
+- **Estimación de Insumos y Tiempos:** Sugiere materiales probables y calcula el rango horario necesario para la intervención.
+- **Ficha Técnica Profesional:** Entrega un resumen listo para copiar y enviar al especialista asignado.
+- **Salida Dirigida Estricta (JSON):** Respuestas consistentes, sin alucinaciones de formato, parseadas dinámicamente en componentes nativos de Streamlit.
+- **Conexión REST Resiliente:** Búsqueda y conexión dinámica con los modelos activos de la API de Google Gemini.
+
+---
+
+## 🧠 Arquitectura de Prompting y Salida Dirigida
+
+La aplicación implementa técnicas avanzadas de **Prompt Engineering**:
+1. **Asignación de Rol de Experto:** Director Técnico especializado en mantenimiento integral.
+2. **Restricciones Negativas:** Prohibición estricta de texto introductorio, bloques de código markdown o información no verificable.
+3. **Esquema JSON Estricto:**
+
+```json
+{
+  "categoria": "Sanitaria | Electricidad | Cerrajería | Climatización | Albañilería | Pintura | Otro",
+  "diagnostico_preliminar": "Explicación clara y concisa de la falla",
+  "nivel_urgencia": "Bajo | Medio | Alto | Crítico",
+  "profesional_requerido": "Especialidad del técnico requerido",
+  "materiales_probables": ["material 1", "material 2"],
+  "tiempo_estimado_horas": "Tiempo estimado (ej: 1 a 2 horas)",
+  "resumen_para_tecnico": "Resumen técnico formal listo para enviar al especialista"
+}
